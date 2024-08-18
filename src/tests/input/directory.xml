@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c:directory xml:base="file:/V:/Projects/Tests/2-col/" name="2-col" xmlns:c="http://www.w3.org/ns/xproc-step">
+        <c:directory xml:base="A/" name="A">
+                <c:directory xml:base="a/" name="a">
+                        <c:file xml:base="a-001.docx" name="a-001.docx" />
+                        <c:file xml:base="a-002.docx" name="a-002.docx" />
+                </c:directory>
+                <c:file xml:base="A-001.docx" name="A-001.docx" />
+                <c:file xml:base="A-002.docx" name="A-002.docx" />
+        </c:directory>
+        <c:directory xml:base="B/" name="B">
+                <c:file xml:base="B-200.docx" name="B-200.docx" />
+                <c:file xml:base="B-201.docx" name="B-201.docx" />
+        </c:directory>
+        <c:directory xml:base="C/" name="C">
+                <c:file xml:base="C-245.docx" name="C-245.docx" />
+                <c:file xml:base="C-246.docx" name="C-246.docx" />
+                <c:file xml:base="C-247.docx" name="C-247.docx" />
+                <c:file xml:base="C-248.docx" name="C-248.docx" />
+                <c:file xml:base="C-249.docx" name="C-249.docx" />
+                <c:file xml:base="C-250.docx" name="C-250.docx" />
+        </c:directory>
+</c:directory>
