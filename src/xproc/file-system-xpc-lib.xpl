@@ -31,20 +31,32 @@
   <p:output port="report" serialization="map{'indent' : true()}" content-types="application/xml" pipe="result@info" />
   
   <p:variable name="full-path" select="base-uri(/)" />
-  <p:variable name="full-name" select="tokenize($full-path, '/')[last()]" />
-  <p:variable name="parent-directory-path" select="substring-before($full-path, $full-name)" />
+  <p:variable name="name" select="tokenize($full-path, '/')[last()]" />
+  <p:variable name="parent-directory-path" select="substring-before($full-path, $name)" />
   <p:variable name="parent-directory-name" select="tokenize($parent-directory-path, '/')[last() - 1]" />
-  <p:variable name="name" select="substring-before($full-name, '.')" />
-  <p:variable name="extension" select="substring-after($full-name, $name)" />
-  <p:variable name="content-type" select="p:document-property(., 'content-type')"/>
+  <p:variable name="extension" select="if(contains($name, '.')) then '.' || tokenize($name, '\.')[.][last()] else ''" />
+  <p:variable name="stem" select="if(contains($name, '.')) then substring-before($name, $extension) else $name" />
+  <p:variable name="content-type" select="p:document-property(/, 'content-type')"/>
   
   <p:identity name="info">
    <p:with-input>
     <p:inline  exclude-inline-prefixes="#all">
-     <fs:file full-path="{$full-path}" parent-directory-path="{$parent-directory-path}" parent-directory-name="{$parent-directory-name}" full-name="{$full-name}" name="{$name}" extension="{$extension}" content-type="{$content-type}" /> 
+     <fs:file full-path="{$full-path}" parent-directory-path="{$parent-directory-path}" parent-directory-name="{$parent-directory-name}" name="{$name}" stem="{$stem}" extension="{$extension}" content-type="{$content-type}" /> 
     </p:inline>
    </p:with-input>
   </p:identity>
    
+ </p:declare-step>
+
+ <p:declare-step type="dxfs:file-details">
+   <p:input port="source" primary="true" />
+  <p:output port="result" primary="true" />
+  
+  <p:xslt>
+   <p:with-input port="stylesheet" href="../xslt/fs-add-file-details.xsl" />
+  </p:xslt>
+  
+  <p:set-properties properties="map{ 'file-details': true() }" merge="true" />
+  
  </p:declare-step>
 </p:library>
