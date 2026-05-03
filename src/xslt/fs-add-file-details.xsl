@@ -47,6 +47,7 @@
    <xsl:attribute name="full-path" select="$full-path" />
    <xsl:attribute name="extension" select="$extension" />
    <xsl:attribute name="stem" select="$stem" />
+   <xsl:attribute name="base-stem" select="replace($stem, '\s', '%20')" />
    <xsl:attribute name="parent-directory-path" select="$parent-directory-path" />
    <xsl:attribute name="parent-directory-name" select="$parent-directory-name" />
   </xsl:copy>
